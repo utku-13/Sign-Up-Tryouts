@@ -4,12 +4,13 @@ from form import SignUpForm, SignInFormForm
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required, current_user
 from functools import wraps
+import os
 
 app = Flask(__name__)
 Bootstrap(app)
 # To activate wtf forms we did above!
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///my_users.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 app.config["SQALCHEMY_TRACK_MODIFICATIONS"] = False 
 
 app.config['SECRET_KEY']='123456'
