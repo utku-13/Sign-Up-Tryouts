@@ -1,0 +1,32 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+<!-- you need to import flask_bootsrtrap 
+    to activate the 2 lines of code above-->
+{% block title %}Forms Tryout{% endblock title %}
+{% block content %}
+<!-- even though you type block content you can add extra 
+features to head section as i did below! -->
+<head>
+    <style>
+        body{
+            background-color: gray;
+        }
+    </style>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+
+
+<h1 class="text-center" style="padding: 20px;color: black;">{{form_name}}</h1>
+<div class="container" style="padding: 400px;padding-top: 100px;padding-bottom: 100px;">
+        {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+        <ul>
+            <li> {{message}} </li>
+        </ul>
+        {% endfor %}
+        {% endwith %}
+        {{ wtf.quick_form(form, novalidate=True, button_map={'submit':'primary'}) }}
+   
+</div>
+
+{% endblock content %}
